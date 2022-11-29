@@ -12,6 +12,7 @@ from jrnl.plugins.tag_exporter import TagExporter
 from jrnl.plugins.text_exporter import TextExporter
 from jrnl.plugins.xml_exporter import XMLExporter
 from jrnl.plugins.yaml_exporter import YAMLExporter
+from jrnl.plugins.blank_words import BlankWordsExporter
 
 __exporters = [
     JSONExporter,
@@ -22,7 +23,9 @@ __exporters = [
     XMLExporter,
     YAMLExporter,
     FancyExporter,
+    BlankWordsExporter, 
 ]
+
 __importers = [JRNLImporter]
 
 __exporter_types = {name: plugin for plugin in __exporters for name in plugin.names}
