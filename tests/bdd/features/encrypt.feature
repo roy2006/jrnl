@@ -14,6 +14,13 @@ Feature: Encrypting and decrypting journals
             2013-06-09 15:39 My first entry.
             2013-06-10 15:40 Life is good.
 
+    Scenario: Decrypting a Caesar based journal
+        Given we use the config "caesar_encrypted.yaml"
+        When we run "jrnl --decrypt"
+        Then the output should contain "Journal decrypted"
+        And the config for journal "default" should contain "encrypt: false"
+        When we run "jrnl -99 --short"
+        Then the output should contain "This is my first entry"
 
     @todo
     Scenario: Trying to decrypt an already unencrypted journal
