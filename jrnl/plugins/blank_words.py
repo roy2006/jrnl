@@ -1,15 +1,13 @@
 # Copyright © 2012-2022 jrnl contributors
 # License: https://www.gnu.org/licenses/gpl-3.0.html
 
+import re
 from typing import TYPE_CHECKING
-import re 
 
 from jrnl.plugins.text_exporter import TextExporter
-from jrnl.plugins.util import get_tags_count
 
 if TYPE_CHECKING:
     from jrnl.Entry import Entry
-    from jrnl.Journal import Journal
 
 WORDS_RE = re.compile(r"[a-zA-Z]{5,}")
 

@@ -3,6 +3,7 @@
 
 from typing import Type
 
+from jrnl.plugins.blank_words import BlankWordsExporter
 from jrnl.plugins.dates_exporter import DatesExporter
 from jrnl.plugins.fancy_exporter import FancyExporter
 from jrnl.plugins.jrnl_importer import JRNLImporter
@@ -12,7 +13,6 @@ from jrnl.plugins.tag_exporter import TagExporter
 from jrnl.plugins.text_exporter import TextExporter
 from jrnl.plugins.xml_exporter import XMLExporter
 from jrnl.plugins.yaml_exporter import YAMLExporter
-from jrnl.plugins.blank_words import BlankWordsExporter
 
 __exporters = [
     JSONExporter,

@@ -30,6 +30,20 @@ Feature: Custom formats
         |   basic_folder.yaml    |
         |   basic_dayone.yaml    |
 
+    Scenario Outline: fill in the missing words format
+        Given we use the config "<config_file>"
+        And we use the password "test" if prompted
+        When we run "jrnl --format blank -3"
+        Then we should get no error
+        And the output should contain "_____ erat non _____"
+
+        Examples: configs
+        |   config_file          |
+        |   basic_onefile.yaml   |
+        |   basic_encrypted.yaml |
+        |   basic_folder.yaml    |
+        |   basic_dayone.yaml    |
+
 
     Scenario Outline: JSON format
         Given we use the config "<config_file>"
