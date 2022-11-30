@@ -15,6 +15,7 @@ class EncryptionMethods(str, Enum):
     NONE = "NoEncryption"
     JRNLV1 = "Jrnlv1Encryption"
     JRNLV2 = "Jrnlv2Encryption"
+    CASESAR = "CaesarEncryption"
 
 
 def determine_encryption_method(config: str | bool) -> "BaseEncryption":
@@ -23,6 +24,7 @@ def determine_encryption_method(config: str | bool) -> "BaseEncryption":
         False: EncryptionMethods.NONE,
         "jrnlv1": EncryptionMethods.JRNLV1,
         "jrnlv2": EncryptionMethods.JRNLV2,
+        "caesar": EncryptionMethods.CASESAR, 
     }
 
     key = config
