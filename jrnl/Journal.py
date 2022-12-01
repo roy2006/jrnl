@@ -305,6 +305,11 @@ class Journal:
         for entry in self.entries:
             entry.date = date
 
+    def delete_tag(self, tag_to_delete, tags_symbols):
+        """Converts the relevant tag to regular text"""
+        for entry in self.entries:
+            entry.delete_tag(tag_to_delete, tags_symbols)
+
     def prompt_action_entries(self, msg: MsgText):
         """Prompts for action for each entry in a journal, using given message.
         Returns the entries the user wishes to apply the action on."""

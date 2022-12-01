@@ -1,0 +1,6 @@
+[2022-12-01 04:00:34 PM] Title with @tag @othertag
+text with @othertag @tag
+
+[2022-12-01 04:00:57 PM] title without a tag
+test with a @tag
+text with @othertag

@@ -101,6 +101,7 @@ def _is_write_mode(args: "Namespace", config: dict, **kwargs) -> bool:
             args.start_date,
             args.strict,
             args.tags,
+            args.delete_tag
         )
     )
 
@@ -206,6 +207,9 @@ def search_mode(args: "Namespace", journal: Journal, **kwargs) -> None:
     elif not journal:
         # Bail out if there are no entries and we're not editing
         return
+
+    elif args.delete_tag:
+        _delete_tag_search_results(**kwargs)
 
     elif args.change_time:
         _change_time_search_results(**kwargs)
@@ -419,6 +423,32 @@ def _delete_search_results(
 
         journal.write()
 
+
+def _delete_tag_search_results(
+    args: "Namespace",
+    journal: Journal,
+    old_entries: list["Entry"],
+    **kwargs
+) -> None:
+    print("in delete tag")
+
+    other_entries = _other_entries(journal, old_entries)
+    entries_to_change = journal.entries
+    tags_symbols = kwargs["config"].get("tagsymbols", "@") 
+
+    tag_to_delete = args.delete_tag
+    if entries_to_change:
+
+        other_entries += [e for e in journal.entries if e not in entries_to_change]
+        journal.entries = entries_to_change
+
+        journal.delete_tag(tag_to_delete, tags_symbols)
+            
+        journal.entries += other_entries
+        journal.sort()
+        journal.write() 
+
+    pass 
 
 def _change_time_search_results(
     args: "Namespace",

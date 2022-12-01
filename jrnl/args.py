@@ -267,6 +267,15 @@ def parse_args(args: list[str] = []) -> argparse.Namespace:
         help="Opens the selected entries in your configured editor",
         action="store_true",
     )
+
+    exporting.add_argument(
+        "--delete-tag",
+        dest="delete_tag",
+        help="delete the specified tag and turn it into regular text",
+        action="store",
+    )
+
+
     exporting.add_argument(
         "--delete",
         dest="delete",

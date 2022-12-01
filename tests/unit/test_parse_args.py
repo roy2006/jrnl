@@ -20,6 +20,7 @@ def expected_args(**kwargs):
         "contains": None,
         "debug": False,
         "delete": False,
+        "delete_tag": None, 
         "change_time": None,
         "edit": False,
         "end_date": None,

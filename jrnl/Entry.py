@@ -88,6 +88,17 @@ class Entry:
             tag.lower() for tag in re.findall(Entry.tag_regex(tagsymbols), self.text)
         }
 
+    @staticmethod
+    def remove_tag_from_string(s: str, tag_to_delete: str, tags_symbols: str) -> str:
+        pattern = rf"(?<!\S)[{tags_symbols}]({tag_to_delete})(?=\W|$)"
+        return re.sub(pattern, tag_to_delete, s, re.MULTILINE)
+
+    def delete_tag(self, tag_to_delete: str, tags_symbols: str) -> None: 
+        if self.body:
+            self.body = Entry.remove_tag_from_string(self.body, tag_to_delete, tags_symbols)
+        if self.title:
+            self.title = Entry.remove_tag_from_string(self.title, tag_to_delete, tags_symbols)
+
     def __str__(self):
         """Returns a string representation of the entry to be written into a journal file."""
         date_str = self.date.strftime(self.journal.config["timeformat"])
