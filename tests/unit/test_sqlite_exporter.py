@@ -1,6 +1,7 @@
-from jrnl.plugins.sqlite_exporter import SqliteExporter
-import os
 import sqlite3
+
+from jrnl.plugins.sqlite_exporter import SqliteExporter
+
 
 def test_create_schema(tmp_path):
     path = tmp_path / "test.db"
