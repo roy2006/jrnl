@@ -3,8 +3,10 @@
 
 import json
 import os
+import pprint
 import random
 import shutil
+import sqlite3
 import string
 from datetime import datetime
 from unittest.mock import MagicMock
@@ -155,6 +157,18 @@ def parse_output_as_language(cli_run, language_name):
 
     return {"lang": language_name, "obj": parsed_output}
 
+@given(parse('we read the sqlite database "{db_file}"'), target_fixture="contents")
+def read_sqlite_database(cli_run, db_file):
+    tables = {} 
+    with sqlite3.connect(db_file) as con:
+        cur = con.cursor() 
+        for table in ["tags", "entries", "entry_tags"]:
+            cur.execute(f"select * from {table}")
+            res = cur.fetchall() 
+            tables[table] = res 
+
+    output = pprint.pformat(tables)
+    return output 
 
 @given(parse('the home directory is called "{home_dir}"'))
 def home_directory(temp_dir, home_dir, monkeypatch):

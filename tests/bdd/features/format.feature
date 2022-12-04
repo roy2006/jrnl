@@ -44,6 +44,16 @@ Feature: Custom formats
         |   basic_folder.yaml    |
         |   basic_dayone.yaml    |
 
+    Scenario Outline: Sqlite format
+        Given we use the config "<config_file>"
+        When we run "jrnl --format sqlite --file test.db"
+        Then we should get no error
+        Given we read the sqlite database "test.db"
+        Then the contents should contain "Entry the first"
+
+        Examples: configs
+        |   config_file          |
+        |   basic_onefile.yaml   |
 
     Scenario Outline: JSON format
         Given we use the config "<config_file>"

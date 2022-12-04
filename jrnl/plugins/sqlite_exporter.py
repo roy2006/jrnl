@@ -86,10 +86,6 @@ class SqliteExporter:
                 values = [(tag_map[tag], entry_id) for tag in entry_tags]
                 cur.executemany("insert into entry_tags (tag_id, entry_id) values (?, ?)", values)
 
-
-
-
-
     @classmethod
     def export(cls, journal: "Journal", output: str | None = None) -> str:
         """Exports to a database file"""

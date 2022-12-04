@@ -66,6 +66,10 @@ def output_should_contain(
             expected_output in cli_run[which_output_stream]
         ) == we_should, output_str
 
+@then(parse('the contents should contain "{expected_output}"'))
+def contents_should_contain(expected_output, contents):
+    assert expected_output in contents
+
 
 @then(parse("the output should not contain\n{expected_output}"))
 @then(parse('the output should not contain "{expected_output}"'))
