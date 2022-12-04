@@ -328,3 +328,13 @@ Feature: Searching in a journal
             2013-06-17 20:38 This entry has a location.
 
             2013-07-17 11:38 This entry is starred!
+
+    Scenario: Sort by length
+        Given we use the config "<config_file>"
+        When we run "jrnl -year 2020 -sort-by-length -1"
+        Then the output should contain "Sed sit"
+        And the output should not contain "Curabitur"
+
+        Examples: configs
+        | config_file          |
+        | basic_onefile.yaml   |

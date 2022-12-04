@@ -302,7 +302,12 @@ def _filter_journal_entries(args: "Namespace", journal: Journal, **kwargs) -> No
         exclude=args.excluded,
         contains=args.contains,
     )
+
+    if args.sort_by_length:
+        journal.sort(by_length=True)
+
     journal.limit(args.limit)
+    pass
 
 
 def _print_entries_found_count(count: int, args: "Namespace") -> None:
@@ -482,9 +487,6 @@ def _change_time_search_results(
 def _display_search_results(args: "Namespace", journal: Journal, **kwargs) -> None:
     # Get export format from config file if not provided at the command line
     args.export = args.export or kwargs["config"].get("display_format")
-
-    if args.sort_by_length:
-        journal.sort(by_length=True)
 
     if args.tags:
         print(plugins.get_exporter("tags").export(journal))

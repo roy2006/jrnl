@@ -210,7 +210,7 @@ class Journal:
     def sort(self, by_length = False):
         """Sorts the Journal's entries"""
         if by_length: 
-            self.entries = sorted(self.entries, key=lambda entry: len(entry.text), reverse=True)
+            self.entries = sorted(self.entries, key=lambda entry: len(entry.text))
         else:
             self.entries = sorted(self.entries, key=lambda entry: entry.date)
 
