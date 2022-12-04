@@ -207,9 +207,12 @@ class Journal:
     def __repr__(self):
         return f"<Journal with {len(self.entries)} entries>"
 
-    def sort(self):
-        """Sorts the Journal's entries by date"""
-        self.entries = sorted(self.entries, key=lambda entry: entry.date)
+    def sort(self, by_length = False):
+        """Sorts the Journal's entries"""
+        if by_length: 
+            self.entries = sorted(self.entries, key=lambda entry: len(entry.text), reverse=True)
+        else:
+            self.entries = sorted(self.entries, key=lambda entry: entry.date)
 
     def limit(self, n=None):
         """Removes all but the last n entries"""

@@ -483,6 +483,9 @@ def _display_search_results(args: "Namespace", journal: Journal, **kwargs) -> No
     # Get export format from config file if not provided at the command line
     args.export = args.export or kwargs["config"].get("display_format")
 
+    if args.sort_by_length:
+        journal.sort(by_length=True)
+
     if args.tags:
         print(plugins.get_exporter("tags").export(journal))
 

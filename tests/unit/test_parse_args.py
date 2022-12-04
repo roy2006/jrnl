@@ -43,6 +43,7 @@ def expected_args(**kwargs):
         "text": [],
         "config_override": [],
         "config_file_path": "",
+        "sort_by_length": False
     }
     return {**default_args, **kwargs}
 

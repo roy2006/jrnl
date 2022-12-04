@@ -255,6 +255,12 @@ def parse_args(args: list[str] = []) -> argparse.Namespace:
         action="extend",
         help="Exclude entries with this tag",
     )
+    reading.add_argument(
+        "-sort-by-length",
+        dest="sort_by_length",
+        action="store_true",
+        help="Sort the output by length - longest journal entries first",
+    )
 
     search_options_msg = """    These help you do various tasks with the selected entries from your search.
     If used on their own (with no search), they will act on your entire journal"""
